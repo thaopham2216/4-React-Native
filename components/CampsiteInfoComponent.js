@@ -46,7 +46,7 @@ function RenderCampsite(props) {
                         type='font-awesome'
                         color='#5637DD'
                         raised
-                        reserve
+                        reverse
                         onPress={() => props.onShowModal()}
                     />
 
@@ -95,12 +95,13 @@ function RenderComments({ comments }) {
 class CampsiteInfo extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
             rating: 5,
             author: '',
             text: '',
             showModal: false
-        }
+        };
     }
 
     markFavorite(campsiteId) {
@@ -152,22 +153,17 @@ class CampsiteInfo extends Component {
                     <View style={styles.modal}>
                         <Rating
                             showRating
-                            tartingValue={this.state.rating}
+                            startingValue={this.state.rating}
                             imageSize={40}
                             onFinishRating={rating => this.setState({ rating: rating })}
                             style={{ paddingVertical: 10 }}
                         />
                         <Input
                             placeholder='AUTHOR'
-                            leftIcon={{
-                                type: 'font-awesome',
-                                name: 'user-o',
-
-                            }
-
-                            }
-                            leftIconContainerStyle={{ paddingVertical: 10 }}
+                            leftIcon={{ type: 'font-awesome', name: 'user-o' }}
+                            leftIconContainerStyle={{ paddingRight: 10 }}
                             onChangeText={author => this.setState({ author: author })}
+                            value={this.state.author}
 
                         />
                         <Input
@@ -179,10 +175,10 @@ class CampsiteInfo extends Component {
                             }
 
                             }
-                            leftIconContainerStyle={{ paddingVertical: 10 }}
+                            leftIconContainerStyle={{ paddingRight: 10 }}
                             onChangeText={text => this.setState({ text: text })}
                         />
-                        <View>
+                        <View style={{ margin: 10 }}>
                             <Button
                                 onPress={() => {
                                     this.handleComment(campsiteId);
@@ -193,7 +189,7 @@ class CampsiteInfo extends Component {
                             />
                         </View>
 
-                        <View>
+                        <View style={{ margin: 10 }}>
                             <Button
                                 onPress={() => {
                                     this.toggleModal();
@@ -216,12 +212,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         margin: 20
     },
-    formLabel: {
-        fontSize: 18,
-        flex: 2
-    },
-    formItem: {
-        flex: 1
+    CardItem: {
+        flex: 1,
+        margin: 10
     },
     modal: {
         justifyContent: 'center',
