@@ -1,12 +1,13 @@
+// week 3 assigment before fix 
 import React, { Component } from 'react';
-
 import {
     Text, View, ScrollView, StyleSheet,
-    Picker, Switch, Button, Alert
+    Picker, Switch, Button, Modal
 } from 'react-native';
-
 import DateTimePicker from '@react-native-community/datetimepicker';
+// week 3 assignment 
 import * as Animatable from 'react-native-animatable';
+//week 3 assignment 
 
 class Reservation extends Component {
 
@@ -25,36 +26,14 @@ class Reservation extends Component {
     static navigationOptions = {
         title: 'Reserve Campsite'
     }
-    /* WEEK3 MODAL REMOVE 
-    
-        toggleModal() {
-            this.setState({ showModal: !this.state.showModal });
-        }
-    
-    */
-    // WEEK3 MODAL REMOVE
+
+    toggleModal() {
+        this.setState({ showModal: !this.state.showModal });
+    }
+
     handleReservation() {
         console.log(JSON.stringify(this.state));
-        // this.toggleModal();
-        Alert.alert(
-            'Begin Search?',
-            'Number of Campers: ' + this.state.campers + "\n" +
-            'Hike-In? ' + this.state.hikeIn + "\n" +
-            'Date: ' + this.state.date.toLocaleDateString("en-US"),
-            [
-                {
-                    text: 'Cancel',
-                    style: 'cancel',
-                    onPress: () => this.resetForm()
-                    //onPress: () => console.log('Cancel Pressed')
-                },
-                {
-                    text: 'OK',
-                    onPress: () => this.resetForm()
-                }
-            ],
-            { cancelable: false }
-        )
+        this.toggleModal();
     }
 
     resetForm() {
@@ -66,6 +45,7 @@ class Reservation extends Component {
             showModal: false
         });
     }
+    // all the view component inside of Scroll view become animatable.view week3 assignment 
     render() {
         return (
             <ScrollView>
@@ -118,13 +98,12 @@ class Reservation extends Component {
                     )}
                     <View style={styles.formRow}>
                         <Button
-                            onPress={() => this.handleReservation()} // can do Alert here too
+                            onPress={() => this.handleReservation()}
                             title='Search'
                             color='#5637DD'
                             accessibilityLabel='Tap me to search for available campsites to reserve'
                         />
                     </View>
-                    {/* 
                     <Modal
                         animationType={'slide'}
                         transparent={false}
@@ -152,7 +131,6 @@ class Reservation extends Component {
                             />
                         </View>
                     </Modal>
-*/}
                 </Animatable.View>
             </ScrollView>
         );
@@ -174,6 +152,22 @@ const styles = StyleSheet.create({
     },
     formItem: {
         flex: 1
+    },
+    modal: {
+        justifyContent: 'center',
+        margin: 20
+    },
+    modalTitle: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        backgroundColor: '#5637DD',
+        textAlign: 'center',
+        color: '#fff',
+        marginBottom: 20
+    },
+    modalText: {
+        fontSize: 18,
+        margin: 10
     }
 });
 

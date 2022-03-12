@@ -1,3 +1,5 @@
+// CampsiteInfoComponent.js file before week 3 assignment modification 
+
 import React, { Component } from 'react';
 import {
     Text, View, ScrollView, FlatList,
@@ -30,9 +32,6 @@ function RenderCampsite(props) {
     const view = React.createRef();
 
     const recognizeDrag = ({ dx }) => (dx < -200) ? true : false;
-    // week 3
-    const recognizeComment = ({ dx }) => (dx > 200) ? true : false;
-    //week 3
 
     const panResponder = PanResponder.create({
         onStartShouldSetPanResponder: () => true,
@@ -61,10 +60,6 @@ function RenderCampsite(props) {
                     { cancelable: false }
                 );
             }
-            else if (recognizeComment(gestureState)) {
-                props.onShowModal();
-            }
-
             return true;
         }
     });
